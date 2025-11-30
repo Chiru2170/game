@@ -11,6 +11,10 @@ int main() {
     int step = 0;           // obstacle vertical movement
     int obstaclePos = rand() % 3;   // 0,1,2 lane
 
+    int score = 0;       //score 
+    int lives = 3;      //Lives
+    int speed = 120;   //speed
+
     while (1) {
 
         // ---- INPUT ----
@@ -27,6 +31,7 @@ int main() {
         // ---- DRAW ----
         system("cls");
         printf("|--- --- ---|\n");
+        printf("Score: %d   Lives: %d\n",score,lives); //lives and socre modification
 
         for (int i = 0; i < 10; i++) {
             if (i == step) {
@@ -55,17 +60,38 @@ int main() {
 
         // ---- COLLISION ----
         if (step == 10 && x == obstaclePos) {
-            printf("\nGAME OVER!\n");
-            break;
+            
+            lives--;  // lives lost
+
+            if(lives == 0){
+
+                system("cls");
+                printf("|--- --- ---|\n");
+                printf("Score: %d   Lives: %d\n",score,lives);
+                
+                printf("\nGAME OVER!\n");
+                break;
+        }
+            printf("You lost a life!    Lives left:%d\n",lives);
+            Sleep(700);
+
+            step = 0;
+            obstaclePos = rand() % 3;
+            continue;
         }
 
-        Sleep(120);
+        Sleep(speed); //speed increase
 
         // Move obstacle down
         step++;
 
         // Reset when reaches bottom
         if (step > 10) {
+            
+            score++;
+
+            if(speed > 40)
+                speed-=3;
             step = 0;
             obstaclePos = rand() % 3; // new lane
         }
