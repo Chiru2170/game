@@ -45,4 +45,11 @@ This game does not contain -->
 5.High scores
 6.Multiple obstacle
 
+Modifications -
+1. Score System
+2. Lives System
+3. Game continues after collision
+4. Difficulty increase
+5. Interface improvement
+
 This is the game analysis from my side that how game works internally,covering all the major points.
